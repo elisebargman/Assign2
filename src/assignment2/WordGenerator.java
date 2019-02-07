@@ -1,8 +1,10 @@
 package assignment2;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 
@@ -36,44 +38,43 @@ public class WordGenerator {
 
 
   public String next() {
-     
-    return text.next();
     
+    wordCount++;
+    String str = text.next();
+    char lastLetter = str.charAt(str.length() - 1);
+    if (lastLetter == '?' || lastLetter == '!' || lastLetter == '.') {
+      sentenceCount++;
+    }
+  
+
+    return str;
+
   }
 
 
- public int getWordCount() {
-  
-   while (text.hasNext()) {
-     
-     text.next();
-     wordCount++;
-   }
+
+  public int getWordCount() {
     return wordCount;
   }
 
 
   public int getSentenceCount() {
-    
-    
-    while (text.hasNext()) {
-      String str = text.next();
-      char lastLetter = str.charAt(str.length() - 1);
-      if(lastLetter=='?'||lastLetter=='!'|| lastLetter=='.')
-         sentenceCount++;
-    }
-       
     return sentenceCount;
   }
-  
 
-public static void main(String[] args) throws IOException {
+
+  public static void main(String[] args) throws IOException {
+   
+    PrintWriter pen = new PrintWriter(System.out, true);
 
     WordGenerator generator = new WordGenerator("Hello.txt");
 
-    generator.getSentenceCount();
-
-    System.out.println(generator.getSentenceCount());
+    
+    while (generator.hasNext()){
+      
+      pen.println(generator.next() + " " +generator.getWordCount() + " " +generator.getSentenceCount());
+      
+    }
 
   }
 

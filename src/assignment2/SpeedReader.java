@@ -14,7 +14,7 @@ static WordGenerator gen;
 
   public static void demonstratePanel(String filename, int width, int height, int fontSize, int wpm)
       throws InterruptedException {
- 
+    
     DrawingPanel panel = new DrawingPanel(width, height);
     Graphics g = panel.getGraphics();
     Font f = new Font("Courier", Font.BOLD, fontSize);
@@ -25,19 +25,22 @@ static WordGenerator gen;
    
    
     while (gen.hasNext()) {
+      
       String nextword = gen.next();
       g.drawString(nextword, 100, 100);
       //System.out.println(nextword);
       Thread.sleep(sleepTime);
       panel.clear();
-    
+      
     }
+   
+    
     
   }
 
   public static void main(String[] args) throws FileNotFoundException, InterruptedException {
     
-    //PrintWriter pen = new PrintWriter(System.out, true);
+    PrintWriter pen = new PrintWriter(System.out, true);
    
     PrintWriter error = new PrintWriter(System.err, true);
 
@@ -64,7 +67,9 @@ static WordGenerator gen;
     } else {
 
       demonstratePanel(filename, width, height, fontSize, wpm);
-      
+     
+      pen.println("Word count: " + gen.getWordCount());
+      pen.println("Sentence count: " + gen.getSentenceCount());
       
       
     }
