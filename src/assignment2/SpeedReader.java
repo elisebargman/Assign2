@@ -37,7 +37,7 @@ static WordGenerator gen;
 
   public static void main(String[] args) throws FileNotFoundException, InterruptedException {
     
-    PrintWriter pen = new PrintWriter(System.out, true);
+    //PrintWriter pen = new PrintWriter(System.out, true);
    
     PrintWriter error = new PrintWriter(System.err, true);
 
